@@ -61,6 +61,10 @@ export function Sidebar() {
 
               <SidebarItem to="/history">
                 History <Clock className="h-4 w-4" />
+
+                <span className="text-xs font-semibold text-primary">
+                  Coming soon
+                </span>
               </SidebarItem>
             </ul>
           </div>

@@ -22,9 +22,9 @@ interface ControlsProps {
 }
 
 export const toneGroupColors: Record<string, string> = {
-  Positive: 'text-[#FE2C55]', // Geist red-600: warm, upbeat energy for Friendly & Playful
-  Engaging: 'text-[#14D390]', // Geist green-600: fresh, lively for Trendy & Witty
-  Supportive: 'text-[#0070F0]', // Geist blue-600: calm, trustworthy for Sincere & Apologetic
+  Positive: 'text-[#FE2C55]',
+  Engaging: 'text-[#14D390]',
+  Supportive: 'text-[#0070F0]',
 };
 
 export function Controls({ targetElement }: ControlsProps) {
@@ -53,7 +53,22 @@ export function Controls({ targetElement }: ControlsProps) {
     }
   };
 
-  const handleWithPrompt = (prompt: string) => {};
+  const handleWithPrompt = async (prompt: string) => {
+    setIsLoading(true);
+
+    try {
+      const response = await contentClient.post('/messages/generate-reply', {
+        originalMessage: content,
+        action: prompt,
+      });
+
+      setReply(response.reply);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   // Function to find the parent div with class "DivCommentObjectWrapper"
   const findCommentWrapper = (element: HTMLElement): HTMLElement | null => {
@@ -88,22 +103,12 @@ export function Controls({ targetElement }: ControlsProps) {
       if (targetElement.parentElement?.parentElement) {
         targetElement.parentElement.parentElement.style.alignItems = 'baseline';
       }
-
-      console.log('Found comment wrapper:', wrapper); // Debug log
     }
   }, [targetElement]);
 
   useEffect(() => {
     if (commentWrapper) {
       const element = commentWrapper.childNodes[0] as HTMLElement;
-
-      // TODO: Remove this
-      console.log(
-        'DETAILS:',
-        commentWrapper,
-        commentWrapper.childNodes[0],
-        element.innerText,
-      );
 
       setContent(element.innerText);
     }
@@ -171,7 +176,7 @@ export function Controls({ targetElement }: ControlsProps) {
             to: 'bottom start',
           }}
         >
-          <TabGroup>
+          <TabGroup defaultIndex={0}>
             <div className="p-4 pb-2">
               <h3 className="text-sm font-medium text-black">
                 Generate a reply

@@ -1,9 +1,9 @@
-import { Action } from "@/lib/types";
-import { cn } from "@/lib/utils";
-import { useState, useEffect } from "react";
-import { Loader2 } from "lucide-react";
-import { useClose } from "@headlessui/react";
-import { contentClient } from "@/lib/content-service";
+import { Action } from '@/lib/types';
+import { cn } from '@/lib/utils';
+import { useState, useEffect } from 'react';
+import { Loader2 } from 'lucide-react';
+import { useClose } from '@headlessui/react';
+import { contentClient } from '@/lib/content-service';
 
 interface ActionsListProps {
   onActionSelect: (actionId: string) => void;
@@ -22,6 +22,7 @@ export function ActionsList({ onActionSelect }: ActionsListProps) {
   // Fetch actions when component mounts
   useEffect(() => {
     setIsLoadingActions(true);
+
     contentClient
       .get('/actions')
       .then((data) => {
@@ -39,7 +40,7 @@ export function ActionsList({ onActionSelect }: ActionsListProps) {
 
   const handleActionSelect = async (action: Action) => {
     setIsLoading(true);
-    setSelectedAction(action.name);
+    setSelectedAction(action.id);
 
     try {
       await onActionSelect(action.prompt);
@@ -56,18 +57,14 @@ export function ActionsList({ onActionSelect }: ActionsListProps) {
 
   if (isLoadingActions) {
     return (
-      <div className="flex justify-center items-center py-4">
-        <Loader2 className="w-6 h-6 animate-spin" />
+      <div className="flex h-[100px] items-center justify-center">
+        <Loader2 className="h-6 w-6 animate-spin !stroke-[#FE2C55]" />
       </div>
     );
   }
 
   if (error) {
-    return (
-      <div className="px-4 py-3 text-sm text-red-500">
-        {error}
-      </div>
-    );
+    return <div className="px-4 py-3 text-sm text-red-500">{error}</div>;
   }
 
   if (actions.length === 0) {
@@ -86,28 +83,28 @@ export function ActionsList({ onActionSelect }: ActionsListProps) {
           onClick={() => handleActionSelect(action)}
           data-selected={selectedAction === action.id}
           className={cn(
-            "px-4 py-1.5 text-left group bg-white w-full flex items-center gap-1",
-            "hover:!bg-[#FE2C55] transition-all duration-200",
-            "data-[selected=true]:!bg-[#FE2C55] data-[selected=true]:!text-white",
-            "disabled:!cursor-not-allowed disabled:not-[data-selected=true]:!opacity-50"
+            'group flex w-full items-center gap-1 bg-white px-4 py-1.5 text-left',
+            'transition-all duration-200 hover:!bg-[#FE2C55]',
+            'data-[selected=true]:!bg-[#FE2C55] data-[selected=true]:!text-white',
+            'disabled:!cursor-not-allowed disabled:not-[data-selected=true]:!opacity-50',
           )}
           disabled={isLoading}
         >
           <div className="flex flex-col gap-1">
             <span
               className={cn(
-                "text-sm group-hover:text-white inline-flex items-center gap-1",
-                "text-left font-medium text-black transition-colors duration-150",
-                "group-data-[selected=true]:!text-white"
+                'inline-flex items-center gap-1 text-sm group-hover:text-white',
+                'text-left font-medium text-black transition-colors duration-150',
+                'group-data-[selected=true]:!text-white',
               )}
             >
               {action.name}
             </span>
             <span
               className={cn(
-                "text-xs text-left text-gray-500 group-hover:text-white",
-                "transition-colors duration-150",
-                "group-data-[selected=true]:!text-white"
+                'text-left text-xs text-gray-500 group-hover:text-white',
+                'transition-colors duration-150',
+                'group-data-[selected=true]:!text-white',
               )}
             >
               {action.description}
@@ -115,10 +112,10 @@ export function ActionsList({ onActionSelect }: ActionsListProps) {
           </div>
 
           {selectedAction === action.id && isLoading && (
-            <Loader2 className="ml-auto w-4 h-4 animate-spin" />
+            <Loader2 className="ml-auto h-6 w-6 animate-spin" />
           )}
         </button>
       ))}
     </div>
   );
-} 
+}
