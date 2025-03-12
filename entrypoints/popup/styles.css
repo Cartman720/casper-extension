@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+@plugin 'tailwind-scrollbar';
+
 @theme {
   --font-proxima-nova: 'Proxima Nova Condensed', sans-serif;
   --font-rift: 'Rift', sans-serif;
@@ -28,8 +30,12 @@
 
 body {
   margin: 0;
-  min-width: 500px;
-  min-height: 600px;
+  width: 500px;
+  height: 600px;
   font-family: 'Proxima Nova Condensed', sans-serif;
   font-weight: 600;
+}
+
+html {
+  @apply scrollbar-thin scrollbar-thumb-primary/40 scrollbar-track-transparent;
 }

@@ -5,3 +5,12 @@ export interface Tone {
   value: string;
   icon: string;
 }
+
+export interface Action {
+  id: string;
+  name: string;
+  description: string;
+  prompt: string;
+  createdAt: string;
+  updatedAt: string;
+}

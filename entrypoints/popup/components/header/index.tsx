@@ -3,15 +3,14 @@ import { Sidebar } from './sidebar';
 
 export function Header() {
   return (
-    <div className="flex justify-between bg-black text-white items-center w-full p-3">
+    <div className="sticky top-0 z-10 mb-4 flex items-center justify-between bg-black p-3 text-white">
       <div className="flex items-center gap-2">
         <Sidebar />
 
-        <h1 className="!text-xl font-bold italic font-rift">Casper</h1>
+        <h1 className="font-rift !text-xl font-bold italic">Casper</h1>
       </div>
 
       <ProfileDropdown />
     </div>
   );
 }
-

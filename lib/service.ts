@@ -1,5 +1,7 @@
+import { storage } from 'wxt/storage';
+
 type RequestOptions = {
-  method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+  method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
   body?: Record<string, unknown>;
   headers?: HeadersInit;
 };
@@ -23,14 +25,17 @@ export class APIClient {
 
   async request(
     endpoint: string,
-    { method = "GET", body, headers = {} }: RequestOptions = {}
+    { method = 'GET', body, headers = {} }: RequestOptions = {},
   ): Promise<any> {
     const url = `${this.baseURL}${endpoint}`;
+
+    const token = await storage.getItem('session:auth_token');
 
     const options: RequestInit = {
       method,
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
+        authorization: token ? `Bearer ${token}` : '',
         ...headers,
       },
     };
@@ -47,8 +52,8 @@ export class APIClient {
         throw new APIError(
           data?.error ||
             data?.message ||
-            "Something went wrong with the request",
-          data
+            'Something went wrong with the request',
+          data,
         );
       }
 
@@ -60,10 +65,10 @@ export class APIClient {
 
   multipart(url: string, payload: any): Promise<any> {
     return fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${url}`, {
-      method: "POST",
+      method: 'POST',
       body: payload,
       headers: {
-        "content-form": "multipart/form-data",
+        'content-form': 'multipart/form-data',
       },
     });
   }
@@ -75,29 +80,29 @@ export class APIClient {
   post<T = any>(
     endpoint: string,
     body?: any,
-    headers?: HeadersInit
+    headers?: HeadersInit,
   ): Promise<T> {
-    return this.request(endpoint, { method: "POST", body, headers });
+    return this.request(endpoint, { method: 'POST', body, headers });
   }
 
   patch<T = any>(
     endpoint: string,
     body?: any,
-    headers?: HeadersInit
+    headers?: HeadersInit,
   ): Promise<T> {
-    return this.request(endpoint, { method: "PATCH", body, headers });
+    return this.request(endpoint, { method: 'PATCH', body, headers });
   }
 
   put(
     endpoint: string,
     body: Record<string, unknown>,
-    headers?: HeadersInit
+    headers?: HeadersInit,
   ): Promise<any> {
-    return this.request(endpoint, { method: "PUT", body, headers });
+    return this.request(endpoint, { method: 'PUT', body, headers });
   }
 
   delete(endpoint: string, headers?: HeadersInit): Promise<any> {
-    return this.request(endpoint, { method: "DELETE", headers });
+    return this.request(endpoint, { method: 'DELETE', headers });
   }
 }
 

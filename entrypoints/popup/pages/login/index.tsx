@@ -16,7 +16,7 @@ const loginSchema = z.object({
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
-export default function LoginPage() {
+export function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -55,9 +55,9 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="max-w-xs mx-auto flex flex-col items-center justify-center h-full">
+    <div className="mx-auto flex h-full max-w-xs flex-col items-center justify-center">
       <div className="mb-3 text-center">
-        <div className="text-2xl font-bold font-rift">Casper Chat</div>
+        <div className="font-rift text-2xl font-bold">Casper Chat</div>
         <div className="text-sm text-gray-500">Sign in to continue</div>
       </div>
 
@@ -69,7 +69,7 @@ export default function LoginPage() {
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="mb-2 flex flex-col w-full max-w-xs"
+        className="mb-2 flex w-full max-w-xs flex-col"
       >
         <FormField name="email" label="Email" error={errors.email}>
           <input
@@ -101,7 +101,7 @@ export default function LoginPage() {
         >
           {isLoading ? 'Logging in...' : 'Log in'}
 
-          {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
+          {isLoading && <Loader2 className="h-4 w-4 animate-spin" />}
         </button>
       </form>
 
