@@ -1,4 +1,3 @@
-import { storage } from 'wxt/storage';
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
@@ -9,47 +8,48 @@ import { FormField } from '@/components/form-field';
 import { Loader2 } from 'lucide-react';
 import logo from '@/assets/casper-logo.png';
 
-// Define the login form schema
-const loginSchema = z.object({
+// Define the forgot password form schema
+const forgotPasswordSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
-  password: z.string().min(6, 'Please enter your password'),
 });
 
-type LoginFormValues = z.infer<typeof loginSchema>;
+type ForgotPasswordFormValues = z.infer<typeof forgotPasswordSchema>;
 
-export function LoginPage() {
+export function ForgotPasswordPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormValues>({
-    resolver: zodResolver(loginSchema),
+  } = useForm<ForgotPasswordFormValues>({
+    resolver: zodResolver(forgotPasswordSchema),
     defaultValues: {
       email: '',
-      password: '',
     },
   });
 
-  const onSubmit = async (data: LoginFormValues) => {
+  const onSubmit = async (data: ForgotPasswordFormValues) => {
     try {
       setIsLoading(true);
       setError(null);
+      setSuccess(null);
 
-      // Call the login API endpoint
-      const response = await client.post('/auth/login', data);
+      // Call the forgot password API endpoint
+      await client.post('/auth/password/reset/request', data);
 
-      // Store the auth token
-      await storage.setItem('session:auth_token', response.token);
-
-      // Redirect to the home page
-      navigate('/');
+      // Show success message
+      setSuccess(
+        'Password reset instructions have been sent to your email. Please check your inbox.',
+      );
     } catch (err: any) {
-      console.error('Login failed:', err);
-      setError(err.message || 'Failed to login. Please try again.');
+      console.error('Password reset request failed:', err);
+      setError(
+        err.message || 'Failed to request password reset. Please try again.',
+      );
     } finally {
       setIsLoading(false);
     }
@@ -58,11 +58,13 @@ export function LoginPage() {
   return (
     <div className="mx-auto flex h-full max-w-xs flex-col items-center justify-center">
       <div className="mb-3 text-center">
-        <div className="mb-3">
-          <img src={logo} alt="Casper Chat" className="h-24 w-24" />
+        <div className="font-rift text-2xl font-bold flex items-center gap-2">
+          <div className="mb-3">
+            <img src={logo} alt="Casper Chat" className="h-10 w-10" />
+          </div>
+          Casper Chat
         </div>
-        <div className="font-rift text-2xl font-bold">Casper Chat</div>
-        <div className="text-sm text-gray-500">Sign in to continue</div>
+        <div className="text-sm text-gray-500">Reset your password</div>
       </div>
 
       {error && (
@@ -71,11 +73,22 @@ export function LoginPage() {
         </div>
       )}
 
+      {success && (
+        <div className="alert alert-success mb-4 w-full">
+          <span>{success}</span>
+        </div>
+      )}
+
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="mb-2 flex w-full max-w-xs flex-col"
       >
-        <FormField name="email" label="Email" error={errors.email}>
+        <FormField
+          name="email"
+          label="Email"
+          error={errors.email}
+          className="mb-3"
+        >
           <input
             type="email"
             className="input w-full"
@@ -84,37 +97,20 @@ export function LoginPage() {
           />
         </FormField>
 
-        <div className="mb-3">
-          <FormField name="password" label="Password" error={errors.password}>
-            <input
-              type="password"
-              className="input w-full"
-              placeholder="Enter your password"
-              {...register('password')}
-            />
-          </FormField>
-          <div className="text-sm text-gray-500">
-            <NavLink to="/forgot-password" className="text-primary">
-              Forgot password?
-            </NavLink>
-          </div>
-        </div>
-
         <button
           type="submit"
           className="btn btn-primary w-full"
           disabled={isLoading}
         >
-          {isLoading ? 'Logging in...' : 'Log in'}
-
+          {isLoading ? 'Sending...' : 'Reset Password'}
           {isLoading && <Loader2 className="h-4 w-4 animate-spin" />}
         </button>
       </form>
 
       <div className="text-sm text-gray-500">
-        Don't have an account?{' '}
-        <NavLink to="/signup" className="text-primary">
-          Sign up
+        Remember your password?{' '}
+        <NavLink to="/login" className="text-primary">
+          Log in
         </NavLink>
       </div>
     </div>

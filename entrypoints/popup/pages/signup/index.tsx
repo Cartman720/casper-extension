@@ -7,7 +7,7 @@ import { z } from 'zod';
 import { client } from '@/lib/popup-service';
 import { FormField } from '@/components/form-field';
 import { XCircleIcon } from 'lucide-react';
-
+import logo from '@/assets/casper-logo.png';
 // Define the signup form schema
 const signupSchema = z
   .object({
@@ -74,7 +74,12 @@ export function SignupPage() {
   return (
     <div className="mx-auto flex h-full max-w-xs flex-col items-center justify-center">
       <div className="mb-3 text-center">
-        <div className="font-rift text-2xl font-bold">Casper Chat</div>
+        <div className="font-rift text-2xl font-bold flex items-center gap-2">
+          <div className="mb-3">
+            <img src={logo} alt="Casper Chat" className="h-10 w-10" />
+          </div>
+          Casper Chat
+        </div>
         <div className="text-sm text-gray-500">Create your account</div>
       </div>
 

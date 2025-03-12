@@ -9,6 +9,7 @@
   --color-primary: #FE2C55;
   --color-secondary: #00f2ea;
   --color-error: #e52020;
+  --color-error-content: #fff;
 }
 
 @plugin "daisyui" {
