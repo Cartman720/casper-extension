@@ -54,7 +54,7 @@ export function Sidebar() {
           </div>
 
           <ul className="flex flex-col gap-2 px-2">
-            <SidebarItem to="/actions">
+            <SidebarItem to="/">
               Actions <Sparkles className="h-4 w-4" />
             </SidebarItem>
 

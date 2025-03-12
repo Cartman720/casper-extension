@@ -41,9 +41,9 @@ export function ProfileDropdown() {
           </a>
         </li>
         <li>
-          <a>
+          <button onClick={handleLogout}>
             Logout <LogOut className="w-4 h-4" />
-          </a>
+          </button>
         </li>
       </ul>
     </div>
