@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { client } from '@/lib/service';
+import { client } from '@/lib/popup-service';
 import { NavLink } from 'react-router';
 import { Edit, Trash2, Plus, Sparkles } from 'lucide-react';
 

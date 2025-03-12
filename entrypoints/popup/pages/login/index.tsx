@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { client } from '@/lib/service';
+import { client } from '@/lib/popup-service';
 import { FormField } from '@/components/form-field';
 import { Loader2 } from 'lucide-react';
 

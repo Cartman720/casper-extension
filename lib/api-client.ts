@@ -1,5 +1,3 @@
-import { storage } from 'wxt/storage';
-
 type RequestOptions = {
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
   body?: Record<string, unknown>;
@@ -16,11 +14,20 @@ export class APIError<T = any> extends Error {
   }
 }
 
+interface APIClientOptions {
+  baseURL?: string;
+  getToken?: () => Promise<string | null>;
+}
+
 export class APIClient {
   private baseURL?: string;
 
-  constructor(baseURL?: string) {
+  // function to get the token
+  private getToken?: () => Promise<string | null>;
+
+  constructor({ baseURL, getToken }: APIClientOptions = {}) {
     this.baseURL = baseURL || import.meta.env.VITE_API_BASE_URL;
+    this.getToken = getToken;
   }
 
   async request(
@@ -29,7 +36,7 @@ export class APIClient {
   ): Promise<any> {
     const url = `${this.baseURL}${endpoint}`;
 
-    const token = await storage.getItem('session:auth_token');
+    const token = await this.getToken?.();
 
     const options: RequestInit = {
       method,
@@ -105,7 +112,3 @@ export class APIClient {
     return this.request(endpoint, { method: 'DELETE', headers });
   }
 }
-
-export const client = new APIClient();
-
-export const fetcher = (url: string) => client.get(url);
