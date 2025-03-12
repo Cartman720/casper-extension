@@ -35,7 +35,7 @@ export function CustomPromptForm({ onSubmit }: CustomPromptFormProps) {
           className={cn(
             "placeholder:text-gray-500",
             "w-full rounded-sm !border !mb-2 !border-gray-300 focus:outline-none p-2",
-            "focus:!border-[#ff0050] focus:!ring-2 ring-[#ff0050] focus:!ring-offset-2"
+            "focus:!border-[#FE2C55] focus:!ring-2 ring-[#FE2C55] focus:!ring-offset-2"
           )}
           placeholder="Enter your custom tone instructions..."
         />

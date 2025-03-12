@@ -23,7 +23,7 @@ interface ControlsProps {
 }
 
 export const toneGroupColors: Record<string, string> = {
-  Positive: "text-[#FF0050]", // Geist red-600: warm, upbeat energy for Friendly & Playful
+  Positive: "text-[#FE2C55]", // Geist red-600: warm, upbeat energy for Friendly & Playful
   Engaging: "text-[#14D390]", // Geist green-600: fresh, lively for Trendy & Witty
   Supportive: "text-[#0070F0]", // Geist blue-600: calm, trustworthy for Sincere & Apologetic
 };
@@ -154,7 +154,7 @@ export function Controls({ targetElement, tones }: ControlsProps) {
   return (
     <div className="mt-2 relative">
       <Popover>
-        <PopoverButton className="!bg-[#ff0050] text-white px-4 py-2 rounded-sm inline-flex items-center gap-2">
+        <PopoverButton className="!bg-[#FE2C55] text-white px-4 py-2 rounded-sm inline-flex items-center gap-2">
           Generate Reply{" "}
           {isLoading ? (
             <Loader2 className="w-4 h-4 animate-spin" />
@@ -189,7 +189,7 @@ export function Controls({ targetElement, tones }: ControlsProps) {
                     "!font-medium inline-flex items-center justify-center gap-2 text-sm",
                     "!border-black/40 !border !outline-white",
                     "text-black !bg-white rounded-md p-1 flex-1",
-                    "data-selected:!bg-[#ff0050] data-selected:!border-[#ff0050] data-selected:!text-white transition-colors duration-200"
+                    "data-selected:!bg-[#FE2C55] data-selected:!border-[#FE2C55] data-selected:!text-white transition-colors duration-200"
                   )}
                 >
                   Select Tone
@@ -200,7 +200,7 @@ export function Controls({ targetElement, tones }: ControlsProps) {
                     "!border-amber-500 !border !outline-white",
                     "text-white !bg-gradient-to-r from-amber-500 to-pink-500 rounded-md p-1 flex-1",
                     "hover:from-amber-600 hover:to-pink-600",
-                    "data-selected:!bg-[#ff0050] data-selected:!border-ping-500 data-selected:!text-white transition-colors duration-200"
+                    "data-selected:!bg-[#FE2C55] data-selected:!border-ping-500 data-selected:!text-white transition-colors duration-200"
                   )}
                 >
                   Customize Prompt{" "}

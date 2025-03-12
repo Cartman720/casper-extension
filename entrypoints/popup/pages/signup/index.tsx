@@ -74,7 +74,7 @@ export default function SignupPage() {
   return (
     <div className="max-w-xs mx-auto flex flex-col items-center justify-center h-full">
       <div className="mb-3 text-center">
-        <div className="text-2xl font-bold">Casper Chat</div>
+        <div className="text-2xl font-bold font-rift">Casper Chat</div>
         <div className="text-sm text-gray-500">Create your account</div>
       </div>
 

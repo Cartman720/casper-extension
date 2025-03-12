@@ -20,7 +20,7 @@ export function Button({
       type={type}
       onClick={onClick}
       className={cn(
-        "!bg-[#ff0050] !font-medium justify-center !text-white !px-4 !py-2 !rounded-md",
+        "!bg-[#FE2C55] !font-medium justify-center !text-white !px-4 !py-2 !rounded-md",
         "!inline-flex !items-center !gap-2",
         className
       )}

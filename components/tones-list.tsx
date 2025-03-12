@@ -43,8 +43,8 @@ export function TonesList({ tones, onToneSelect }: TonesListProps) {
           data-selected={selectedTone === tone.value}
           className={cn(
             "px-4 py-1.5 text-left group bg-white capitalize w-full flex items-center gap-1",
-            "hover:!bg-[#ff0050] transition-all duration-200",
-            "data-[selected=true]:!bg-[#ff0050] data-[selected=true]:!text-white",
+            "hover:!bg-[#FE2C55] transition-all duration-200",
+            "data-[selected=true]:!bg-[#FE2C55] data-[selected=true]:!text-white",
             "disabled:!cursor-not-allowed disabled:not-[data-selected=true]:!opacity-50"
           )}
           disabled={isLoading}
