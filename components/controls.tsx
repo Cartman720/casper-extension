@@ -41,7 +41,7 @@ export function Controls({ targetElement }: ControlsProps) {
 
     try {
       const response = await contentClient.post('/messages/generate-reply', {
-        originalMessage: content,
+        originalMessage: content || '',
         action,
       });
 
@@ -58,7 +58,7 @@ export function Controls({ targetElement }: ControlsProps) {
 
     try {
       const response = await contentClient.post('/messages/generate-reply', {
-        originalMessage: content,
+        originalMessage: content || '',
         action: prompt,
       });
 
