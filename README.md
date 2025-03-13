@@ -78,7 +78,7 @@ The extension communicates with our secure API to handle authentication and AI-p
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/casper-extension.git
+git clone https://github.com/Cartman720/casper-extension.git
 
 # Install dependencies
 cd casper-extension
