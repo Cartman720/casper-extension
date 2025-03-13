@@ -158,7 +158,7 @@ export function Controls({ targetElement }: ControlsProps) {
   return (
     <div className="relative mt-2">
       <Popover>
-        <PopoverButton className="inline-flex items-center gap-2 rounded-sm !bg-[#FE2C55] px-4 py-2 text-white">
+        <PopoverButton className="inline-flex items-center gap-2 rounded-md !bg-[#FE2C55] px-4 py-2 text-white">
           Generate Reply{' '}
           {isLoading ? (
             <Loader2 className="h-4 w-4 animate-spin" />

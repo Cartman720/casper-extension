@@ -1,8 +1,6 @@
 import { createRoot } from 'react-dom/client';
-import { browser } from 'wxt/browser';
-import { Tone } from '@/lib/types';
+import { ControlsApp } from '@/components/controls-app';
 import '../styles/global.css';
-import { contentClient } from '@/lib/content-service';
 
 // Function to inject React app near comment inputs
 function injectReactApp(element: HTMLElement): void {
@@ -21,7 +19,7 @@ function injectReactApp(element: HTMLElement): void {
   // Render React component inside the shadow DOM
   const root = createRoot(container);
 
-  root.render(<Controls targetElement={element} />);
+  root.render(<ControlsApp targetElement={element} />);
 }
 
 // DOM observation logic

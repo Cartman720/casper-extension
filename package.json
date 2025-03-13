@@ -1,6 +1,6 @@
 {
   "name": "casper-chat-extension",
-  "description": "Casper Chat: Generate TikTok/Instagram/Facebook replies with AI",
+  "description": "Casper Chat: Generate TikTok replies with AI",
   "private": true,
   "version": "0.0.1",
   "type": "module",

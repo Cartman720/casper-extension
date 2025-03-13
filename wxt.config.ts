@@ -9,6 +9,7 @@ export default defineConfig({
     plugins: [tailwindcss() as any],
   }),
   manifest: {
+    name: "Casper Chat: TikTok Replies",
     permissions: ["storage"],
   },
 });
