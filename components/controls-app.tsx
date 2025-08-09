@@ -7,13 +7,13 @@ interface ControlsAppProps {
 }
 
 export function ControlsApp({ targetElement }: ControlsAppProps) {
-  const { isAuthenticated, isLoading, refreshAuthState } = useAuth();
+  const { isAuthenticated, isLoading, requestLogin } = useAuth();
 
   if (!isAuthenticated || isLoading) {
     return (
       <div className="relative mt-2">
-        <Button onClick={refreshAuthState}>
-          Login to Casper to Continue
+        <Button onClick={requestLogin}>
+          Log in to Casper to continue
           {isLoading ? (
             <Loader2 className="h-4 w-4 animate-spin" />
           ) : (

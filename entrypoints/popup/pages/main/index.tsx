@@ -1,4 +1,4 @@
-import { storage } from 'wxt/storage';
+import { storage } from '#imports';
 import { useNavigate } from 'react-router';
 import { Header } from '@/entrypoints/popup/components/header';
 

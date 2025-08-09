@@ -44,7 +44,7 @@
     "prettier-plugin-tailwindcss": "^0.6.11",
     "tailwind-scrollbar": "^4.0.1",
     "typescript": "^5.6.3",
-    "wxt": "^0.19.13"
+    "wxt": "^0.20.7"
   },
   "packageManager": "pnpm@9.14.4+sha1.64b6e81e79630419b675c555ef3b65607cfd6315"
 }

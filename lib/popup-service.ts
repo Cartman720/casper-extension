@@ -1,4 +1,4 @@
-import { storage } from 'wxt/storage';
+import { storage } from '#imports';
 import { APIClient } from './api-client';
 
 export const getToken = async () => {

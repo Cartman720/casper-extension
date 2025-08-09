@@ -1,4 +1,4 @@
-import { storage } from 'wxt/storage';
+import { storage } from '#imports';
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';

@@ -1,4 +1,4 @@
-import { browser } from 'wxt/browser';
+import { browser } from '#imports';
 
 export async function getStorageValue(key: string) {
   const response: any = await browser.runtime.sendMessage({
@@ -6,7 +6,7 @@ export async function getStorageValue(key: string) {
     key,
   });
 
-  return response.value;
+  return response?.value;
 }
 
 export async function setStorageValue(key: string, value: string) {

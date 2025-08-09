@@ -62,6 +62,8 @@ export function Controls({ targetElement }: ControlsProps) {
         action: prompt,
       });
 
+      console.log('RESPONSE:', response);
+
       setReply(response.reply);
     } catch (error) {
       console.error(error);
@@ -98,6 +100,9 @@ export function Controls({ targetElement }: ControlsProps) {
   useEffect(() => {
     if (targetElement) {
       const wrapper = findCommentWrapper(targetElement);
+
+      console.log('WRAPPER:', wrapper);
+
       setCommentWrapper(wrapper);
 
       if (targetElement.parentElement?.parentElement) {

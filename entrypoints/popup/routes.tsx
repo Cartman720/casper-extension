@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { storage } from 'wxt/storage';
+import { storage } from '#imports';
 import { Routes, Route, Navigate, useLocation, Outlet } from 'react-router';
 import { MainLayout } from './components/main-layout';
 import { HistoryPage } from './pages/history';

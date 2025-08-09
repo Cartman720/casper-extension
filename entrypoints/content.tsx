@@ -24,17 +24,17 @@ function injectReactApp(element: HTMLElement): void {
 
 // DOM observation logic
 function checkElementForCommentInput(element: Node): void {
-  if (
-    element.nodeType === Node.ELEMENT_NODE &&
-    (element as HTMLElement).getAttribute?.('data-e2e') === 'comment-input'
-  ) {
-    injectReactApp(element as HTMLElement);
-    return;
-  }
+  // if (
+  //   element.nodeType === Node.ELEMENT_NODE &&
+  //   (element as HTMLElement).getAttribute?.('data-e2e') === 'comment-input'
+  // ) {
+  //   injectReactApp(element as HTMLElement);
+  //   return;
+  // }
 
   if (element instanceof HTMLElement) {
     const commentInputs = element.querySelectorAll(
-      '[data-e2e="comment-input"]',
+      '[class*="-DivInputAreaContainer"]',
     );
     commentInputs.forEach((input) => injectReactApp(input as HTMLElement));
   }
@@ -60,9 +60,7 @@ function observeDOMChanges(): () => void {
 }
 
 function initialCheck(): void {
-  const existingInputs = document.querySelectorAll(
-    '[data-e2e="comment-input"]',
-  );
+  const existingInputs = document.querySelectorAll('[class*="-DivInputAreaContainer"]');
   existingInputs.forEach((input) => injectReactApp(input as HTMLElement));
 }
 
